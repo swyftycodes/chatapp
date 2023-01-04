@@ -48,5 +48,5 @@
 		<input class="input input-bordered w-full bg-base-200 max-w-md" type="password" name="password">
 	</div>
 	
-	<input type="submit" name="submit" class="btn btn-primary"> 
+	<button type="submit" class="btn btn-primary">Confirm</button>
 </form>
