@@ -23,5 +23,5 @@ model users {
   email    String @unique
   password String
   created  DateTime @default(now())
-  auth_token String?
+  auth_token String? @unique
 }
