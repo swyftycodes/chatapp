@@ -1,6 +1,6 @@
 <script lang="ts">
 	import toast from 'svelte-french-toast';
-	import { enhance } from '$app/forms';
+	import { applyAction, enhance } from '$app/forms';
 	
 	export let data;
 	export let form;
@@ -20,6 +20,9 @@
 					break;
 				case 'failure':
 					toast.error(result.data.message)
+					break;
+				case 'redirect':
+					await applyAction(result)
 					break;
 			}
 		}

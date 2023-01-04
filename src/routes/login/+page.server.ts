@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 
 const prisma = new PrismaClient();
 
@@ -47,8 +47,6 @@ export const actions = {
 		});
 
 		await prisma.$disconnect()
-		return {
-			message: 'Success'
-		}
+		throw redirect(303, '/')
 	}
 }
