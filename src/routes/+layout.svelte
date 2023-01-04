@@ -1,6 +1,7 @@
 <script>
 	import "../app.postcss"
 	import toast, { Toaster } from 'svelte-french-toast';
+	import { page } from '$app/stores';
 
 	let width;
 </script>
@@ -11,10 +12,10 @@
 	<div class="navbar-start">
 		<a href="/" class="btn btn-ghost normal-case text-xl">Chat App</a>
 	</div>
-
+	
+	{#if !$page.data.user}
 	<div class="navbar-end">
-		{#if width > 500}
-		<a href="/about" class="btn btn-ghost normal-case text-xl">About</a>
+		{#if width > 500} <a href="/about" class="btn btn-ghost normal-case text-xl">About</a>
 		<a href="/login" class="btn btn-ghost normal-case text-xl">Sign In</a>
 		<a href="/register" class="btn btn-primary normal-case text-xl">Register</a>
 		
@@ -29,6 +30,17 @@
 		</div>
 		{/if}
 	</div>
+	{/if}
+
+	{#if $page.data.user}
+	<div class="navbar-end">
+		<a href="/about" class="btn btn-ghost normal-case text-xl">About</a>
+		<form method="post" action="/logout">
+			<button class="btn btn-ghost normal-case text-xl" type="submit">Log Out</button>
+		</form>
+		<a href="/profile" class="btn btn-primary normal-case text-xl">logged in as {$page.data.user.username}</a>
+	</div>
+	{/if}
 </nav>
 
 <slot />
