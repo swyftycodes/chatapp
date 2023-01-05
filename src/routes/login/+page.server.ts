@@ -42,7 +42,7 @@ export const actions = {
 		cookies.set('session', authedUser.auth_token, {
 			path: '/',
 			httpOnly: true,
-			secure: true,
+			secure: false,
 			sameSite: 'strict'
 		});
 
