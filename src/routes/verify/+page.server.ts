@@ -65,7 +65,12 @@ export const actions = {
 			}
 		})
 		
-		cookies.delete('registersession')
+		cookies.delete('registersession', {
+			path: '/',
+			httpOnly: true,
+			secure: false,
+			sameSite: 'strict'
+		})
 
 		throw redirect(308, '/')
 	}

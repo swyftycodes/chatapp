@@ -6,7 +6,14 @@ export const load = async () => {
 
 export const actions = {
 	default: async ({ cookies }) => {
-		cookies.delete('session');
+		console.log('hit action')
+
+		cookies.delete('session', {
+			path: '/',
+			httpOnly: true,
+			secure: false,
+			sameSite: 'strict'
+		});
 
 		throw redirect(302, '/login')
 	}
