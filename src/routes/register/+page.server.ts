@@ -64,8 +64,9 @@ export const actions = {
 		cookies.set('registersession', sessionid, {
 			path: '/',
 			httpOnly: true,
-			secure: true,
-			sameSite: 'strict'
+			secure: false,
+			sameSite: 'strict',
+			maxAge: 60 
 		})
 
 		console.log('created verification attempt in database and set sessionid in cookies')
