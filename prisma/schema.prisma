@@ -10,8 +10,8 @@ datasource db {
 model signup_attempts {
   id       BigInt @id @default(autoincrement())
   username String
-  email    String   @unique
-  password String
+  emailHash    String   @unique
+  passwordHash String
   code     Int 
   created  DateTime @default(now())
   sessionid String @unique
