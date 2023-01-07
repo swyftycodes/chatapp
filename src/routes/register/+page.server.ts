@@ -24,14 +24,22 @@ export const actions = {
 	register: async ({ cookies, request }) => {
 		const body = Object.fromEntries(await request.formData());
 
-		const exists = await prisma.users.findUnique({
+		const emailTaken = await prisma.users.findUnique({
 			where: {
 				email: body.email
 			}
 		})
+
+		const usernameTaken = await prisma.users.findUnique({
+			where: {
+				username: body.username
+			}
+		})
 		
-		if (exists) {
+		if (emailTaken) {
 			return fail(400, { message: 'Email taken' })
+		} else if (usernameTaken) {
+			return fail(400, { message: 'Username taken' })
 		}
 
 		const attempt = await prisma.signup_attempts.findUnique({
@@ -54,7 +62,7 @@ export const actions = {
 		await prisma.signup_attempts.create({
 			data: {
 				username: body.username,
-				email: body.email,
+				email: body.email, 
 				password: body.password,
 				code: code,
 				sessionid: sessionid 
