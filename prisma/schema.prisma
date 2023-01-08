@@ -4,24 +4,32 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL") 
+  url      = env("DATABASE_URL")
 }
 
 model signup_attempts {
-  id       BigInt @id @default(autoincrement())
-  username String @unique
-  email String   @unique
-  password String
-  code     Int 
-  created  DateTime @default(now())
-  sessionid String @unique
+  id        BigInt   @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  code      Int
+  created   DateTime @default(now())
+  sessionid String   @unique
 }
 
 model users {
-  id       BigInt @id @default(autoincrement())
-  username String @unique
-  email String   @unique
-  password String
-  created  DateTime @default(now())
-  auth_token String? @unique
+  id         BigInt     @id @default(autoincrement())
+  username   String     @unique
+  email      String     @unique
+  password   String
+  created    DateTime   @default(now())
+  auth_token String?    @unique
+  messages   messages[]
+}
+
+model messages {
+  id      BigInt @id @default(autoincrement())
+  from    users  @relation(references: [id], fields: [userid])
+  userid  BigInt
+  content String
 }
