@@ -38,6 +38,7 @@
 		<label tabindex="0" class="btn m-1 btn-primary">{$page.data.user.username}</label>
  			<ul tabindex="0" class="space-y-2 mt-4 dropdown-content menu p-2 shadow bg-base-300 rounded-box">
 				<li class="bg-base-100 "><a href="/about">About</a></li>
+				<li class="bg-base-100 "><a href="/messages">Messages</a></li>
 				<li><form class="bg-base-100" action="/logout" method="post">
 					<button type="submit" class="bg-base-100">Logout</button>
 				</form></li>
