@@ -15,7 +15,7 @@
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "postcss-load-config": "^4.0.1",
-    "prisma": "^4.8.0",
+    "prisma": "^4.8.1",
     "svelte": "^3.54.0",
     "svelte-check": "^2.9.2",
     "svelte-preprocess": "^4.10.7",
@@ -26,7 +26,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@prisma/client": "^4.8.0",
+    "@prisma/client": "^4.8.1",
     "@sveltejs/adapter-node": "^1.0.0",
     "argon2": "^0.30.3",
     "daisyui": "^2.46.0",
