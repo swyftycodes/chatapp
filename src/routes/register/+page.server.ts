@@ -4,8 +4,6 @@ import { fail, redirect } from '@sveltejs/kit';
 import { randomBytes } from 'crypto';
 import mailTransporter from "$lib/server/email";
 
-const prisma = new PrismaClient();
-
 function genSessionID() {
 	return randomBytes(32).toString('base64');
 }
@@ -16,9 +14,13 @@ function generateRandomNumber() {
     return Math.floor(Math.random() * (maxm - minm + 1)) + minm;
 }
 
-export const load: PageServerLoad = () => {
-	console.log('loaded');
+export const load: PageServerLoad = ({ locals }) => {
+	if (locals.user) {
+		throw redirect(303, '/')
+	}
 }
+
+const prisma = new PrismaClient();
 
 export const actions = {
 	register: async ({ cookies, request }) => {
