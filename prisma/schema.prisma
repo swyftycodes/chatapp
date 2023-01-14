@@ -25,11 +25,20 @@ model users {
   created    DateTime   @default(now())
   auth_token String?    @unique
   messages   messages[]
+  convos     convos[]
 }
 
 model messages {
   id      BigInt @id @default(autoincrement())
   from    users  @relation(references: [id], fields: [userid])
+  to      convos @relation(references: [id], fields: [convoid])
+  convoid BigInt
   userid  BigInt
   content String
+}
+
+model convos {
+  id       BigInt     @id @default(autoincrement())
+  messages messages[]
+  users    users[]
 }
