@@ -38,7 +38,8 @@ model messages {
 }
 
 model convos {
-  id       BigInt     @id @default(autoincrement())
-  messages messages[]
-  users    users[]
+  id         BigInt     @id @default(autoincrement())
+  convo_name String
+  messages   messages[]
+  users      users[]
 }
