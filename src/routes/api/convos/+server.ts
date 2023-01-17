@@ -8,12 +8,16 @@ export const GET = async ({ cookies }) => {
 			auth_token: cookies.get('session')
 		},
 		include: {
-			convos: true
-		}
+			convos: {
+				include: {
+					users: true
+				}
+			},
+		},
 	})
 
 	user.convos.forEach((i) => {
-		console.log(i);
+		console.log(i.users);
 	})
 
 
