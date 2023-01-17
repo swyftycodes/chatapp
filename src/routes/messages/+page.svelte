@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { io } from 'socket.io-client';
 
 	let convos: object[] = []
 
@@ -13,10 +12,6 @@
 
 		convos = await res.json()
 	})
-
-	const socket = io('http://localhost:3000');
-	
-	socket.emit('message', 'hello')
 </script>
 
 <div class="flex flex-col items-center">
@@ -47,7 +42,13 @@
 	<ul>
 		{#each convos as convo}
 			<li class="my-3">
-				<h2 class="font-bold text-xl">{convo.id} | {convo.convo_name}</h2>
+				<h2 class="font-bold text-xl">
+					{convo.id} | 
+
+					{#each convo.users as user}
+						{user.username}&nbsp;
+					{/each}
+				</h2>
 			</li>
 		{/each}
 	</ul>
