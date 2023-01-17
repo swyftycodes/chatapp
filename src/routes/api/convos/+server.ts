@@ -10,7 +10,11 @@ export const GET = async ({ cookies }) => {
 		include: {
 			convos: {
 				include: {
-					users: true
+					users: {
+						select: {
+							username: true
+						}
+					}
 				}
 			},
 		},
