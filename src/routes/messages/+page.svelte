@@ -1,17 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
-	let convos: object[] = []
-
-	onMount(async () => {
-		const res = await fetch('/api/convos', {
-			headers: {
-   			'Content-Type': 'application/json'
-			}
-		})
-
-		convos = await res.json()
-	})
+	import { page } from '$app/stores';
 </script>
 
 <div class="flex flex-col items-center">
@@ -40,7 +29,7 @@
 	</div>
 	
 	<ul>
-		{#each convos as convo}
+		{#each $page.data.convos as convo}
 			<li class="my-3">
 				<h2 class="font-bold text-xl">
 					{convo.id} | 
